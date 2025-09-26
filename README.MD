@@ -1,9 +1,12 @@
 # Kronos Multiplatform Library
+A fork of the [original kronos library](https://github.com/softartdev/Kronos-Multiplatform) with the following changes:
+- using cloudflare's time server "time.cloudflare.com" 
+- using kotlinx.datetime instead of kotlin.time.
 
-![Maven Central](https://img.shields.io/maven-central/v/io.github.sunragav/kronos)
-[![Build & Publish CI/CD](https://github.com/softartdev/Kronos-Multiplatform/actions/workflows/build_publish.yml/badge.svg)](https://github.com/softartdev/Kronos-Multiplatform/actions/workflows/build_publish.yml)
 
-Kotlin Multiplatform library for network time synchronization. It extends the [`kotlin.time`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/) API and supports the following platforms:
+![Maven Central](https://img.shields.io/maven-central/v/io.github.sunragav.kronos/kronos)
+
+Kotlin Multiplatform library for network time synchronization. It extends the [`kotlinx.datetime`](https://kotlinlang.org/api/kotlinx-datetime) API and supports the following platforms:
 - Android
 - iOS
 - Desktop JVM (MacOS, Linux, Windows)
@@ -55,7 +58,7 @@ repositories {
 ```kotlin
 commonMain {
     dependencies {
-        implementation("io.github.softartdev:kronos:$latestVersion")
+        implementation("io.github.sunragav:kronos:$latestVersion")
     }
 }
 ```
