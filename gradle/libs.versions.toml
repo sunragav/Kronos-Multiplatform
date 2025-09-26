@@ -1,5 +1,5 @@
 [versions]
-kronos = "0.0.4"
+kronos = "0.0.5"
 compileSdk = "36"
 targetSdk = "36"
 minSdk = "21"
@@ -16,10 +16,11 @@ napier = "2.7.1"
 kotlinx-coroutines = "1.10.2"
 swift-klib = "0.6.4"
 vanniktech-maven-publish = "0.34.0"
+truetimeVersion = "4.0.0.alpha"
 
 [libraries]
 kronos = { module = "io.github.sunragav.kronos:kronos", version.ref = "kronos" }
-lyft-kronos-android = { module = "com.lyft.kronos:kronos-android", version.ref = "lyft-kronos" }
+truetime-android = { group = "com.github.instacart", name = "truetime-android", version.ref = "truetimeVersion" }
 lyft-kronos-java = { module = "com.lyft.kronos:kronos-java", version.ref = "lyft-kronos" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }

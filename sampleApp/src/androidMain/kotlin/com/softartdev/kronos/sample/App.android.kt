@@ -21,7 +21,7 @@ class AndroidApp : Application() {
         super.onCreate()
         INSTANCE = this
         Napier.base(DebugAntilog())
-        Clock.Network.sync(applicationContext)
+        Clock.Network.sync()
     }
 }
 
@@ -43,12 +43,4 @@ internal actual fun openUrl(url: String?) {
     AndroidApp.INSTANCE.startActivity(intent)
 }
 
-internal actual fun clickSync() = Clock.Network.sync(context = AndroidApp.INSTANCE)
-
-internal actual fun clickBlockingSync() {
-    Clock.Network.blockingSync(context = AndroidApp.INSTANCE)
-}
-
-internal actual suspend fun clickAwaitSync() {
-    Clock.Network.awaitSync(ctx = AndroidApp.INSTANCE)
-}
+internal actual fun clickSync() = Clock.Network.sync()

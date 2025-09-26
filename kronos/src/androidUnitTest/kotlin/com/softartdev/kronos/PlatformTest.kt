@@ -1,10 +1,11 @@
 
 package com.softartdev.kronos
 
-import android.content.Context
-import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.datetime.Clock
-import kotlin.test.*
+import kotlin.test.Ignore
+import kotlin.test.Test
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 class PlatformTest {
 
@@ -12,8 +13,6 @@ class PlatformTest {
     @Test
     fun getCurrentNtpTimeMsTest() {
         assertNull(Clock.Network.getCurrentNtpTimeMs())
-        val appContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
-        assertTrue(Clock.Network.blockingSync(context = appContext))
         assertNotNull(Clock.Network.getCurrentNtpTimeMs())
     }
 }

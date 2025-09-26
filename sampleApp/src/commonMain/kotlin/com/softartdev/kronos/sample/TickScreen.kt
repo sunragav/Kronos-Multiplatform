@@ -103,7 +103,7 @@ fun TickScreen() = Scaffold(
                 Button(onClick = {
                     coroutineScope.launch {
                         loadingState.value = true
-                        clickAwaitSync()
+                        clickSync()
                         tick()
                         loadingState.value = false
                     }

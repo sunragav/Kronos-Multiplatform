@@ -46,7 +46,8 @@ kotlin {
         val jvmTest by getting
         val androidMain by getting {
             dependencies {
-                api(libs.lyft.kronos.android)
+                api(libs.truetime.android)
+                api(libs.kotlinx.coroutines.core)
             }
         }
         val androidUnitTest by getting {

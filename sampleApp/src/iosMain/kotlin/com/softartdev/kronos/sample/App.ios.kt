@@ -11,11 +11,3 @@ internal actual fun openUrl(url: String?) {
 }
 
 internal actual fun clickSync() = Clock.Network.sync()
-
-internal actual fun clickBlockingSync() {
-    Clock.Network.blockingSync()
-}
-
-internal actual suspend fun clickAwaitSync() {
-    Clock.Network.awaitSync()
-}

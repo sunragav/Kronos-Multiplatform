@@ -1,44 +1,26 @@
 package com.softartdev.kronos
 
-import android.content.Context
-import com.lyft.kronos.AndroidClockFactory
-import com.lyft.kronos.KronosClock
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import com.instacart.truetime.time.TrueTimeImpl
+import com.instacart.truetime.time.TrueTimeParameters
 
+private const val SYNC_INTERNAL_IN_MILLIS = 60_000L
 private const val NTP_HOST_CLOUD_FLARE = "time.cloudflare.com"
 private const val NTP_HOST_GOOGLE = "time.google.com"
+
 object AndroidNetworkClock : NetworkClock {
-    lateinit var kronosClock: KronosClock
+    private val trueTime = TrueTimeImpl(
+        params = TrueTimeParameters.Builder()
+            .ntpHostPool(arrayListOf(
+               NTP_HOST_CLOUD_FLARE,
+                NTP_HOST_GOOGLE
+            ))
+            .syncIntervalInMillis(SYNC_INTERNAL_IN_MILLIS)
+            .buildParams()
+    )
 
-    fun sync(applicationContext: Context) {
-        initClock(applicationContext)
-        kronosClock.syncInBackground()
+    fun sync() {
+        trueTime.sync()
     }
 
-    fun blockingSync(applicationContext: Context): Boolean {
-        initClock(applicationContext)
-        return kronosClock.sync()
-    }
-
-    suspend fun awaitSync(applicationContext: Context): Boolean = suspendCoroutine { continuation ->
-        initClock(applicationContext)
-        try {
-            val result = kronosClock.sync()
-            continuation.resume(result)
-        } catch (e: Exception) {
-            continuation.resumeWithException(e)
-        }
-    }
-
-    private fun initClock(applicationContext: Context) {
-        if (::kronosClock.isInitialized) return
-        kronosClock = AndroidClockFactory.createKronosClock(applicationContext, ntpHosts = listOf(NTP_HOST_CLOUD_FLARE, NTP_HOST_GOOGLE))
-    }
-
-    override fun getCurrentNtpTimeMs(): Long? = when {
-        ::kronosClock.isInitialized -> kronosClock.getCurrentTimeMs()
-        else -> null
-    }
+    override fun getCurrentNtpTimeMs(): Long = trueTime.now().time
 }

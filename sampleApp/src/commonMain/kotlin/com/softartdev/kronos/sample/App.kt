@@ -10,7 +10,3 @@ internal fun App() = AppTheme {
 internal expect fun openUrl(url: String?)
 
 internal expect fun clickSync()
-
-internal expect fun clickBlockingSync()
-
-internal expect suspend fun clickAwaitSync()

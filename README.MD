@@ -2,6 +2,7 @@
 A fork of the [original kronos library](https://github.com/softartdev/Kronos-Multiplatform) with the following changes:
 - using cloudflare's time server "time.cloudflare.com" 
 - using kotlinx.datetime instead of kotlin.time.
+- using com.github.instacart:truetime-android for the android side implementation.
 
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.sunragav.kronos/kronos)
@@ -11,8 +12,8 @@ Kotlin Multiplatform library for network time synchronization. It extends the [`
 - iOS
 - Desktop JVM (MacOS, Linux, Windows)
 ## Usage
-### `kotlin.time` Extension
-The library [extends the main `Clock` interface](https://github.com/softartdev/Kronos-Multiplatform/blob/main/kronos/src/commonMain/kotlin/com/softartdev/kronos/ClockExt.kt) from the standard library. You can use the [`Clock.Network`](https://github.com/softartdev/Kronos-Multiplatform/blob/main/kronos/src/commonMain/kotlin/com/softartdev/kronos/NetworkClock.kt) class to retrieve the current network time, similar to using the built-in [`Clock.System`](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/time/Clock.kt#L60) instance.
+### `kotlinx.datetime` Extension
+The library [extends the main `Clock` interface](https://github.com/sunragav/Kronos-Multiplatform/blob/main/kronos/src/commonMain/kotlin/com/softartdev/kronos/ClockExt.kt) from the standard library. You can use the [`Clock.Network`](https://github.com/sunragav/Kronos-Multiplatform/blob/main/kronos/src/commonMain/kotlin/com/softartdev/kronos/NetworkClock.kt) class to retrieve the current network time, similar to using the built-in [`Clock.System`](https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/time/Clock.kt#L60) instance.
 ```kotlin
 val networkTime: Instant = Clock.Network.now()  // 2025-06-30T13:42:43.712Z
 val systemTime: Instant = Clock.System.now()    // 2025-06-30T13:42:43.566455Z
@@ -64,7 +65,7 @@ commonMain {
 ```
 ## Implementation
 The main common interface is implemented using the following:
-- [lyft/Kronos](https://github.com/lyft/Kronos-Android) for Java & Android
+- [com.github.instacart/truetime-android](https://github.com/instacart/truetime-android) for Java & Android
 - [MobileNativeFoundation/Kronos](https://github.com/MobileNativeFoundation/Kronos) for iOS
 
 The project is built and tested using the following:
