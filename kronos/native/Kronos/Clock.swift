@@ -65,7 +65,7 @@ public struct Clock {
     /// - parameter samples:    The number of samples to be acquired from each server (default 4).
     /// - parameter completion: A closure that will be called after _all_ the NTP calls are finished.
     /// - parameter first:      A closure that will be called after the first valid date is calculated.
-    public static func sync(from pool: String = "time.apple.com", samples: Int = 4,
+    public static func sync(from pool: String = "time.cloudflare.com", samples: Int = 4,
                             first: ((Date, TimeInterval) -> Void)? = nil,
                             completion: ((Date?, TimeInterval?) -> Void)? = nil)
     {

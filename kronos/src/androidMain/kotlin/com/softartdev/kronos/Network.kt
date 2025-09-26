@@ -1,10 +1,7 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.softartdev.kronos
 
 import android.content.Context
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
+import kotlinx.datetime.Clock
 
 actual val Clock.Companion.Network: NetworkClock
     get() = AndroidNetworkClock

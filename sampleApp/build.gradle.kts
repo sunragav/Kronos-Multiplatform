@@ -44,6 +44,7 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(libs.napier)
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.datetime)
             }
         }
         val androidMain by getting {

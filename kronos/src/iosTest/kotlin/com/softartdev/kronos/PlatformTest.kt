@@ -1,13 +1,10 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.softartdev.kronos
 
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeout
+import kotlinx.datetime.Clock
 import kotlin.test.*
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
 class PlatformTest {
 

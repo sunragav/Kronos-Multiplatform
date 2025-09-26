@@ -1,11 +1,8 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.softartdev.kronos
 
+import kotlinx.datetime.Clock
 import kotlin.test.Test
 import kotlin.test.assertNull
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
 class CommonTest {
 

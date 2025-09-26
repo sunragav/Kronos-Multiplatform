@@ -1,6 +1,6 @@
 # Kronos Multiplatform Library
 
-![Maven Central](https://img.shields.io/maven-central/v/io.github.softartdev/kronos)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.sunragav/kronos)
 [![Build & Publish CI/CD](https://github.com/softartdev/Kronos-Multiplatform/actions/workflows/build_publish.yml/badge.svg)](https://github.com/softartdev/Kronos-Multiplatform/actions/workflows/build_publish.yml)
 
 Kotlin Multiplatform library for network time synchronization. It extends the [`kotlin.time`](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/) API and supports the following platforms:

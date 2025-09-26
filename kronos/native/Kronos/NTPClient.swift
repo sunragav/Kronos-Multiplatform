@@ -24,7 +24,7 @@ final class NTPClient {
     /// - parameter maximumServers:  The maximum number of servers to be queried (default 5).
     /// - parameter timeout:         The individual timeout for each of the NTP operations.
     /// - parameter completion:      A closure that will be response PDU on success or nil on error.
-    func query(pool: String = "time.apple.com", version: Int8 = 3, port: Int = 123,
+    func query(pool: String = "time.cloudflare.com", version: Int8 = 3, port: Int = 123,
                numberOfSamples: Int = kDefaultSamples, maximumServers: Int = kMaximumNTPServers,
                timeout: CFTimeInterval = kDefaultTimeout,
                progress: @escaping (TimeInterval?, Int, Int) -> Void)

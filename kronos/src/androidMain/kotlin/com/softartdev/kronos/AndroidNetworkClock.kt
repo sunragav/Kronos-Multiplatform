@@ -7,6 +7,8 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+private const val NTP_HOST_CLOUD_FLARE = "time.cloudflare.com"
+private const val NTP_HOST_GOOGLE = "time.google.com"
 object AndroidNetworkClock : NetworkClock {
     lateinit var kronosClock: KronosClock
 
@@ -32,7 +34,7 @@ object AndroidNetworkClock : NetworkClock {
 
     private fun initClock(applicationContext: Context) {
         if (::kronosClock.isInitialized) return
-        kronosClock = AndroidClockFactory.createKronosClock(applicationContext)
+        kronosClock = AndroidClockFactory.createKronosClock(applicationContext, ntpHosts = listOf(NTP_HOST_CLOUD_FLARE, NTP_HOST_GOOGLE))
     }
 
     override fun getCurrentNtpTimeMs(): Long? = when {

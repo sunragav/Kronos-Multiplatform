@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.softartdev.kronos.sample
 
 import android.app.Application
@@ -12,8 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import com.softartdev.kronos.*
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
+import kotlinx.datetime.Clock
 
 class AndroidApp : Application() {
     companion object {

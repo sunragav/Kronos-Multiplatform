@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalTime::class)
-
 package com.softartdev.kronos.sample
 
 import androidx.compose.foundation.layout.Arrangement
@@ -33,11 +31,12 @@ import com.softartdev.kronos.Network
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.time.Clock
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
 
 @Composable
 fun TickScreen() = Scaffold(
@@ -56,10 +55,16 @@ fun TickScreen() = Scaffold(
         ) {
             var networkTime: Instant? by remember { mutableStateOf(value = clockNetworkNowOrNull()) }
             Text(text = "Network time:", style = typography.subtitle2)
-            Text(text = networkTime.toString(), style = typography.body1)
+            Text(text = "In UTC:   ${networkTime?.toLocalDateTime(TimeZone.UTC).toString()}", style = typography.body1)
+            Text(text = "Local TZ: ${networkTime?.toLocalDateTime(TimeZone.currentSystemDefault()).toString()}", style = typography.body1)
+
             var systemTime: Instant by remember { mutableStateOf(Clock.System.now()) }
             Text(text = "System time:", style = typography.subtitle2)
-            Text(text = systemTime.toString(), style = typography.body1)
+            Text(text = "In UTC:   ${systemTime.toLocalDateTime(TimeZone.UTC)}", style = typography.body1)
+            Text(text = "Local TZ: ${systemTime.toLocalDateTime(TimeZone.currentSystemDefault())}", style = typography.body1)
+
+            Text(text = "Epoch seconds:", style = typography.subtitle2)
+            Text(text = networkTime?.epochSeconds.toString(), style = typography.body1)
             var diff: Duration? by remember {
                 mutableStateOf(value = networkTime?.let { it - systemTime })
             }
@@ -80,7 +85,7 @@ fun TickScreen() = Scaffold(
                 systemTime = Clock.System.now()
                 networkTime = clockNetworkNowOrNull()
                 diff = networkTime?.let { it - systemTime }
-                Napier.d(tag = "⏳", message = "Ticking Diff: $diff")
+                Napier.d(tag = "⏳", message = "Ticking Diff: $diff" + "f")
             }
             if (ticking) {
                 LaunchedEffect(key1 = "tick") {

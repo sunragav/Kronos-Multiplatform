@@ -9,7 +9,7 @@ import Foundation
         let completionCallback: ((Date?, TimeInterval?) -> Void)? = { (date, offset) in
             print("⬅️ Kronos: completion sync: \(date) offset: \(offset)")
         }
-        Clock.sync(first: firstCallback, completion: completionCallback)
+        Clock.sync(from: "time.cloudflare.com", first: firstCallback, completion: completionCallback)
     }
     
     @objc(now) public class func now() -> Date? {
@@ -25,7 +25,7 @@ import Foundation
             print("⬅️ Kronos: completion sync: \(date) offset: \(offset)")
             semaphore.signal()
         }
-        Clock.sync(first: firstCallback, completion: completionCallback)
+        Clock.sync(from: "time.cloudflare.com", first: firstCallback, completion: completionCallback)
         semaphore.wait()
     }
     
@@ -38,6 +38,6 @@ import Foundation
             let intervalNumber = offset.map(NSNumber.init(value:)) as NSNumber?
             callback(date, intervalNumber)
         }
-        Clock.sync(first: firstCallback, completion: completionCallback)
+        Clock.sync(from: "time.cloudflare.com", first: firstCallback, completion: completionCallback)
     }
 }
