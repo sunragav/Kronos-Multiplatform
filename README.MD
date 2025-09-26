@@ -48,7 +48,7 @@ fun main() {
 }
 ```
 ### Installation
-The latest release is available on [Maven Central](https://repo1.maven.org/maven2/io/github/softartdev/kronos/).
+The latest release is available on [Maven Central](https://repo1.maven.org/maven2/io/github/sunragav/kronos/).
 1. Add the Maven Central repository if it is not already included:
 ```kotlin
 repositories {
@@ -63,9 +63,18 @@ commonMain {
     }
 }
 ```
+3. and in settings.gradle.kts
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        maven { url = uri("https://jitpack.io") } // Required for 
+    }
+}
+```
 ## Implementation
 The main common interface is implemented using the following:
-- [com.github.instacart/truetime-android](https://github.com/instacart/truetime-android) for Java & Android
+- [com.github.instacart/truetime-android](https://github.com/instacart/truetime-android) for Android
+- [lyft/Kronos](https://github.com/lyft/Kronos-Android) for Java
 - [MobileNativeFoundation/Kronos](https://github.com/MobileNativeFoundation/Kronos) for iOS
 
 The project is built and tested using the following:
