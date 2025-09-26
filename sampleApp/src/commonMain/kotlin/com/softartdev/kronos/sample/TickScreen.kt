@@ -111,7 +111,7 @@ fun TickScreen() = Scaffold(
                     Text(text = "Sync network time")
                 }
             }
-            Button(onClick = { openUrl("https://github.com/softartdev/Kronos-Multiplatform") }) {
+            Button(onClick = { openUrl("https://github.com/sunragav/Kronos-Multiplatform") }) {
                 Text("Open github")
             }
         }
