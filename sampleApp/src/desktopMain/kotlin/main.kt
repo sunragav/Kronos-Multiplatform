@@ -4,7 +4,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.softartdev.kronos.Network
 import com.softartdev.kronos.sample.App
-import com.softartdev.kronos.sync
+import com.softartdev.kronos.syncWithCloudFlare
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import kotlinx.datetime.Clock
@@ -12,7 +12,7 @@ import kotlinx.datetime.Clock
 fun main() {
     Napier.base(DebugAntilog())
 
-    Clock.Network.sync()
+    Clock.Companion.Network.syncWithCloudFlare()
 
     application {
         Window(

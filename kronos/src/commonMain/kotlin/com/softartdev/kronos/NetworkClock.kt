@@ -3,7 +3,6 @@ package com.softartdev.kronos
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-
 interface NetworkClock : Clock {
     /**
      * @return the current time in milliseconds, or null if no ntp sync has occurred.
@@ -11,11 +10,16 @@ interface NetworkClock : Clock {
     fun getCurrentNtpTimeMs(): Long?
 
     /**
+     * syncs the clock with the given time server pool [String] and resyncs after the duration mentioned after every IntervalInMilliSeconds[Long]
+     */
+    fun sync(pool: String, syncIntervalInMilliSeconds: Long)
+
+    /**
      * Returns the [Instant] corresponding to the current time, according to this clock.
      */
     override fun now(): Instant {
         val currentNtpTimeMs = getCurrentNtpTimeMs()
-        requireNotNull(currentNtpTimeMs) { "No ntp sync has occurred" }
+        requireNotNull(currentNtpTimeMs) { throw NtpSyncFailedException("No ntp sync has occurred") }
         return Instant.fromEpochMilliseconds(currentNtpTimeMs)
     }
 }

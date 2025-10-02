@@ -21,7 +21,7 @@ class AndroidApp : Application() {
         super.onCreate()
         INSTANCE = this
         Napier.base(DebugAntilog())
-        Clock.Network.sync()
+        Clock.Network.syncWithCloudFlare()
     }
 }
 
@@ -43,4 +43,4 @@ internal actual fun openUrl(url: String?) {
     AndroidApp.INSTANCE.startActivity(intent)
 }
 
-internal actual fun clickSync() = Clock.Network.sync()
+internal actual fun clickSync() = Clock.Network.syncWithCloudFlare()
