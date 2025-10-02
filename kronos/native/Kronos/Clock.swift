@@ -1,5 +1,4 @@
 import Foundation
-
 /// Struct that has time + related metadata
 public typealias AnnotatedTime = (
 
@@ -54,7 +53,6 @@ public struct Clock {
         return AnnotatedTime(date: Date(timeIntervalSince1970: stableTime.adjustedTimestamp),
                              timeSinceLastNtpSync: stableTime.timeSinceLastNtpSync)
     }
-
     /// Syncs the clock using NTP. Note that the full synchronization could take a few seconds. The given
     /// closure will be called with the first valid NTP response which accuracy should be good enough for the
     /// initial clock adjustment but it might not be the most accurate representation. After calling the
@@ -65,13 +63,13 @@ public struct Clock {
     /// - parameter samples:    The number of samples to be acquired from each server (default 4).
     /// - parameter completion: A closure that will be called after _all_ the NTP calls are finished.
     /// - parameter first:      A closure that will be called after the first valid date is calculated.
-    public static func sync(from pool: String = "time.cloudflare.com", samples: Int = 4,
+    public static func sync(from pool: String = "time.cloudflare.com", timeIntervalInSeconds: CFTimeInterval =  6.0, samples: Int = 4,
                             first: ((Date, TimeInterval) -> Void)? = nil,
                             completion: ((Date?, TimeInterval?) -> Void)? = nil)
     {
         self.loadFromDefaults()
 
-        NTPClient().query(pool: pool, numberOfSamples: samples) { offset, done, total in
+        NTPClient().query(pool: pool, numberOfSamples: samples, timeout: timeIntervalInSeconds) { offset, done, total in
             if let offset = offset {
                 self.stableTime = TimeFreeze(offset: offset)
 

@@ -10,4 +10,4 @@ internal actual fun openUrl(url: String?) {
     UIApplication.sharedApplication.openURL(nsUrl)
 }
 
-internal actual fun clickSync() = Clock.Network.sync()
+internal actual fun clickSync() = Clock.Network.syncWithCloudFlare()

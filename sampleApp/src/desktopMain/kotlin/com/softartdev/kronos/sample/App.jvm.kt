@@ -2,7 +2,9 @@ package com.softartdev.kronos.sample
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
-import com.softartdev.kronos.JvmNetworkClock
+import com.softartdev.kronos.Network
+import com.softartdev.kronos.syncWithCloudFlare
+import kotlinx.datetime.Clock
 import java.awt.Desktop
 import java.net.URI
 
@@ -11,7 +13,7 @@ internal actual fun openUrl(url: String?) {
     Desktop.getDesktop().browse(uri)
 }
 
-internal actual fun clickSync() = JvmNetworkClock.sync()
+internal actual fun clickSync() = Clock.Companion.Network.syncWithCloudFlare()
 
 @Preview
 @Composable
